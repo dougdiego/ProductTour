@@ -26,6 +26,7 @@ static NSMutableArray *arrayOfAllocatedTours;
         if(arrayOfAllocatedTours==nil)
         arrayOfAllocatedTours = [[NSMutableArray alloc]init];
         [arrayOfAllocatedTours addObject:self];
+        _animateAttachedView=TRUE;
     }
     
     return self;
@@ -91,7 +92,9 @@ static NSMutableArray *arrayOfAllocatedTours;
                              scaleDown2.duration = 0.2;
                              scaleDown2.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.15, 1.15, 1.15)];
                              scaleDown2.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1, 1, 1)];
-                             [bubble.attachedView.layer addAnimation:scaleDown2 forKey:nil];
+                             if( _animateAttachedView ){
+                                 [bubble.attachedView.layer addAnimation:scaleDown2 forKey:nil];
+                             }
                              
                              
                          }];
